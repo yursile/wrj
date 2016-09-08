@@ -1,0 +1,49 @@
+@import "./sprite.less";
+@import './preset.less';
+@import './loading.less';
+
+
+/**
+*  在此引入的图片同样会从webpack中过滤
+*  小图会转成base64
+*  大图会在dist目录中生成该图，并且生成的css会替换成publicPath中的路径
+*/
+.base64{
+	background: url(../img/sprites/cloud.png)
+}
+.testimg{
+	background: url(../img/sprites/saucer.png)
+}
+//======================================
+
+.sohu{
+	.sprite(@sohu);
+	.abs(40px,40px)
+}
+.border{
+	width: 50px;
+	height: 50px;
+	// font-size: 10px;/*px*/
+	// border:1px solid #000;/*no*/
+	border-radius: 50px;
+}
+html,body,#main{
+	height: 100%;
+}
+
+.testTemplate{
+	.abs_box(300px);
+	font-size: 30px;
+	text-align: center;
+	p{
+		text-align: left;
+		text-indent:2em;
+		margin-top: 30px;
+	}
+}
+
+#cvsContainer{
+	.wrapper();
+	.hide();
+}
+
