@@ -8,7 +8,7 @@ var SpritesmithPlugin = require('yu-spritesmith');
 
 module.exports={
 	entry:{
-        // polyfill:'babel-polyfill',
+        polyfill:'babel-polyfill',
 		index:"./src/js/index.js"
 	},
     watch:true,
@@ -30,11 +30,11 @@ module.exports={
                 // loader: ExtractTextPlugin.extract("style", "css-loader?-minimize!px2rem?remUnit=100&remPrecision=8!postcss!less")
                 loader: ExtractTextPlugin.extract("style", "css-loader?-minimize!postcss!less") //不用rem
             },
-            // {
-            //     test: /\.js[x]?$/,
-            //     exclude: /node_modules/,
-            //     loader: 'script'
-            // },
+            {
+                test: /\.js[x]?$/,
+                exclude: /node_modules/,
+                loader: 'babel?presets[]=es2015,presets[]=stage-0'
+            },
             {
                 test: /\.css$/, 
                 loader:ExtractTextPlugin.extract("style", "css-loader?-minimize") //不用rem
@@ -108,6 +108,9 @@ module.exports={
             blockFile:"./src/view/statistics.html",
             headBlockFile:"./src/view/loading.html"
 		}),
+
+        
+
 
       
 

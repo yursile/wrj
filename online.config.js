@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-yu-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var SpritesmithPlugin = require('yu-spritesmith');
-
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // var DOMAIN = "../"
 // var ROOT = "dist/"
@@ -104,6 +104,55 @@ module.exports={
             blockFile:"./src/view/statistics.html",
             headBlockFile:"./src/view/loading.html"
 		}),
+
+
+         new CopyWebpackPlugin([
+          
+            { from: 'src/font', to: "font" },
+            
+         
+            // {
+            //     from: {
+            //         glob:'from/directory/**/*',
+            //         dot: true
+            //     },
+            //     to: '/absolute/path'
+            // },
+ 
+            // // Copy glob results, relative to context 
+            // {
+            //     context: 'from/directory',
+            //     from: '**/*',
+            //     to: '/absolute/path'
+            // },
+            
+            // // {output}/file/without/extension 
+            // {
+            //     from: 'path/to/file.txt',
+            //     to: 'file/without/extension',
+            //     toType: 'file'
+            // },
+            
+            // // {output}/directory/with/extension.ext/file.txt 
+            // {
+            //     from: 'path/to/file.txt',
+            //     to: 'directory/with/extension.ext',
+            //     toType: 'dir'
+            // }
+        ], {
+            ignore: [
+                // Doesn't copy any files with a txt extension     
+                // '*.txt',
+                
+                // Doesn't copy any file, even if they start with a dot 
+                { dot: false }
+            ],
+ 
+            // By default, we only copy modified files during 
+            // a watch or webpack-dev-server build. Setting this 
+            // to `true` copies all files. 
+            copyUnmodified: true
+        }),
         // new OpenBrowserPlugin({ url: 'http://localhost:8080' })
     ],
     // devServer:{
