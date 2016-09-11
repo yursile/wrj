@@ -11,25 +11,74 @@ $(".c_next,.c_prev").on("mouseout",function(){
 });
 
 
+
+
+class Slide{
+	// isAuto = true;
+
+	constructor(ele,isAuto=false,interval=5000){
+		this.ele = ele;
+		this.interval = interval;
+		this.isAuto = isAuto;
+		this.activeIndex = 0;
+		if(isAuto){
+			this.timer = this.autoPlay();
+		}
+
+
+	}
+
+	prev(){
+
+		if(this.isAuto){
+			clearInterval(this.timer);
+			this.timer = null;
+			setTimeout(()=>this.timer = this.autoPlay(),this.interval);
+		}
+
+		this.ele.css({
+			"transform":"translate(0)",
+			"transition":"0.5s linear all"
+		})
+		this.activeIndex = 0;
+		
+	}
+
+	next(){
+		if(this.isAuto){
+			clearInterval(this.timer);
+			this.timer = null;
+			setTimeout(()=>this.timer = this.autoPlay(),this.interval);
+		}
+		this.ele.css({
+			"transform":"translate(-50%)",
+			"transition":"0.5s linear all"
+		});
+		this.activeIndex = 1;
+	}
+
+	autoPlay(){
+		return setInterval(()=>{
+			if(this.activeIndex===0){
+				this.next();
+			}else{
+				this.prev();
+			}
+		},this.interval);
+	}
+
+}
+
 var UL = $(".carousel ul");
+var slider = new Slide(UL,true);
+
 $(".c_next").on("click",function(){
-	UL.css({
-		"transform":"translate(-50%)",
-		"transition":"0.5s linear all"
-	})
+	slider.next();
 });
 $(".c_prev").on("click",function(){
-	UL.css({
-		"transform":"translate(0)",
-		"transition":"0.5s linear all"
-	})
+	slider.prev();
 });
 
-// $(window).on("scroll",function(){
-//     if(( $(".procedure_d").offset().top - $(this).scrollTop() ) > $(this).height()){
-
-//     }
-// });
 
 
 //listen scroll

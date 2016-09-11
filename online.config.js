@@ -10,9 +10,10 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 // var DOMAIN = "../"
 // var ROOT = "dist/"
 var DOMAIN = "http://news.sohu.com/upload/"
-var ROOT = "yursile/laondow/"
+var ROOT = "yursile/wrjpc1/"
 module.exports={
 	entry:{
+            polyfill:'babel-polyfill',
     		index:"./src/js/index.js",
     	},
     watch:true,
@@ -29,8 +30,8 @@ module.exports={
          loaders: [ //加载器
             {
                 test: /\.less$/,
-                // loader: ExtractTextPlugin.extract("style", "css-loader?-minimize!postcss!less")//不用rem
-                loader: ExtractTextPlugin.extract("style", "css-loader?-minimize!px2rem?remUnit=100&remPrecision=8!postcss!less")
+                loader: ExtractTextPlugin.extract("style", "css-loader?-minimize!postcss!less")//不用rem
+                // loader: ExtractTextPlugin.extract("style", "css-loader?-minimize!px2rem?remUnit=100&remPrecision=8!postcss!less")
             },
             {
                 test: /\.js[x]?$/,
@@ -39,8 +40,8 @@ module.exports={
             },
             {
                 test: /\.css$/, 
-                loader:ExtractTextPlugin.extract("style", "css-loader?-minimize!px2rem?remUnit=100&remPrecision=8") 
-                // loader:ExtractTextPlugin.extract("style", "css-loader?-minimize")//不用rem
+                // loader:ExtractTextPlugin.extract("style", "css-loader?-minimize!px2rem?remUnit=100&remPrecision=8") 
+                loader:ExtractTextPlugin.extract("style", "css-loader?-minimize")//不用rem
             },
             {
                 test: /\.html$/, 
@@ -109,40 +110,13 @@ module.exports={
          new CopyWebpackPlugin([
           
             { from: 'src/font', to: "font" },
-            
-         
-            // {
-            //     from: {
-            //         glob:'from/directory/**/*',
-            //         dot: true
-            //     },
-            //     to: '/absolute/path'
-            // },
- 
-            // // Copy glob results, relative to context 
-            // {
-            //     context: 'from/directory',
-            //     from: '**/*',
-            //     to: '/absolute/path'
-            // },
-            
-            // // {output}/file/without/extension 
-            // {
-            //     from: 'path/to/file.txt',
-            //     to: 'file/without/extension',
-            //     toType: 'file'
-            // },
-            
-            // // {output}/directory/with/extension.ext/file.txt 
-            // {
-            //     from: 'path/to/file.txt',
-            //     to: 'directory/with/extension.ext',
-            //     toType: 'dir'
-            // }
+            { from: 'src/img', to: "img" },
+            // { from: 'src/js', to: "img" },
         ], {
             ignore: [
                 // Doesn't copy any files with a txt extension     
                 // '*.txt',
+                'sprites/*',
                 
                 // Doesn't copy any file, even if they start with a dot 
                 { dot: false }
