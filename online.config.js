@@ -10,10 +10,10 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 // var DOMAIN = "../"
 // var ROOT = "dist/"
 var DOMAIN = "http://news.sohu.com/upload/"
-var ROOT = "yursile/wrjpc1/"
+var ROOT = "yursile/wrjpc2/"
 module.exports={
 	entry:{
-            polyfill:'babel-polyfill',
+            // polyfill:'babel-polyfill',
     		index:"./src/js/index.js",
     	},
     watch:true,
@@ -53,7 +53,7 @@ module.exports={
             }
         ]
     },
-    postcss: [autoprefixer],
+    postcss: [autoprefixer({ browsers: ['> 1%', 'IE 9']})],
     plugins:[
         new webpack.DefinePlugin({
             'process.env': {

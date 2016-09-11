@@ -30,29 +30,47 @@ class Slide{
 
 	prev(){
 
-		if(this.isAuto){
+		if(this.isAuto&&!this.delay){
 			clearInterval(this.timer);
 			this.timer = null;
-			setTimeout(()=>this.timer = this.autoPlay(),this.interval);
+			this.delay = setTimeout(()=>{this.timer = this.autoPlay();clearTimeout(this.delay);this.delay=null},this.interval);
+			// this.timer = this.autoPlay();
 		}
 
 		this.ele.css({
 			"transform":"translate(0)",
-			"transition":"0.5s linear all"
+			// "-moz-transform":"translate(0)",
+			// "-ms-transform":"translate(0)",
+			// "-webkit-transform":"translate(0)",
+			// "-o-transform":"translate(0)",
+			"transition":"0.5s linear all",
+			// "-o-transition":"0.5s linear all",
+			// "-moz-transition":"0.5s linear all",
+			// "-ms-transition":"0.5s linear all",
+			// "-webkit-transition":"0.5s linear all"
 		})
 		this.activeIndex = 0;
 		
 	}
 
 	next(){
-		if(this.isAuto){
+		if(this.isAuto&&!this.delay){
 			clearInterval(this.timer);
 			this.timer = null;
-			setTimeout(()=>this.timer = this.autoPlay(),this.interval);
+			this.delay = setTimeout(()=>{this.timer = this.autoPlay();clearTimeout(this.delay);this.delay=null},this.interval);
+			// this.timer = this.autoPlay();
 		}
 		this.ele.css({
 			"transform":"translate(-50%)",
-			"transition":"0.5s linear all"
+			// "-moz-transform":"translate(-50%)",
+			// "-ms-transform":"translate(-50%)",
+			// "-webkit-transform":"translate(0)",
+			// "-o-transform":"translate(-50%)",
+			"transition":"0.5s linear all",
+			// "-o-transition":"0.5s linear all",
+			// "-moz-transition":"0.5s linear all",
+			// "-ms-transition":"0.5s linear all",
+			// "-webkit-transition":"0.5s linear all"
 		});
 		this.activeIndex = 1;
 	}
@@ -127,6 +145,34 @@ ScrollListener.add($(".procedure_d"),function(){
 
 ScrollListener.listen();
 
+
+
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+// requestAnimationFrame polyfill by Erik Möller. fixes from Paul Irish and Tino Zijdel
+// MIT license
+(function() {
+    var lastTime = 0;
+    var vendors = ['ms', 'moz', 'webkit', 'o'];
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+    }
+    if (!window.requestAnimationFrame) window.requestAnimationFrame = function(callback, element) {
+        var currTime = new Date().getTime();
+        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+        var id = window.setTimeout(function() {
+            callback(currTime + timeToCall);
+        }, timeToCall);
+        lastTime = currTime + timeToCall;
+        return id;
+    };
+    if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function(id) {
+        clearTimeout(id);
+    };
+}());
+
+
 setTimeout(function(){
 	var v = new Vivus('newl', {duration: 3000,start:"manual",onReady:function(){
 		$("#newl").show();
@@ -140,3 +186,7 @@ setTimeout(function(){
 	}
 	render();
 },1000);
+
+
+	
+

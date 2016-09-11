@@ -48,9 +48,15 @@
 
 		<div class="carousel_box">
 			<div class="carousel">
-				<ul>
-					<li>
-						<svg version="1.1" id="newl" xmlns="http://www.w3.org/2000/svg" style="display:none" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				<ul class="carousels">
+					<li >
+						
+
+						<ul id="scene" class="scene">
+							<li class="layer" data-depth="0.05"><img src="./img/banner2.jpg" alt="" ></li>
+							<li class="layer" data-depth="0.40"><div class="b_title"></div></li>
+
+							<li class="layer" data-depth = "0.40"><svg version="1.1" id="newl" xmlns="http://www.w3.org/2000/svg" style="display:none" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							 width="500px" height="500px" viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
 							<path fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#ffffff" stroke-width="2" stroke-miterlimit="10" d="M262,184
 								v20"/>
@@ -104,9 +110,9 @@
 							<path fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#ffffff" stroke-width="2" stroke-miterlimit="10" d="
 								M137.949,142.809c0-6.302,0-10.706,0-10.706c0-5.003,4.248-9.059,9.488-9.059c5.24,0,9.488,4.056,9.488,9.059v54.353
 								c0,5.003-4.248,9.06-9.488,9.06c-5.24,0-9.488-4.056-9.488-9.06c0,0,0-4.694,0-11.323"/>
-						</svg>
-						<img src="./img/banner2.jpg" alt="">
-						<div class="b_title"></div>
+						</svg></li>
+						</ul>
+						
 					</li>
 					<li><img src="./img/banner.jpg" alt=""></li>
 				</ul>
@@ -116,6 +122,7 @@
 		</div>
 		<div class="navbar">
 			<ul class="nav">
+				<li><div class="swrj"></div></li>
 				<li>
 					<h3>大赛规划</h3>
 				</li>
@@ -156,14 +163,17 @@
 			<div class="ad_banner"><a href=""><img src="./img/lexus.jpg" alt=""></a></div>
 
 			<div class="award_box">
-				<a href="" class="award_setting"></a>
-		
-				<div class="car"></div>
-				<p class="lexus_doc">
-					中大型豪华SUV RX2000</br>
-					价格：41.8万-61.8万</br>
-					详情请参见官网。<a href="http://www.lexus.com.cn/models/rx/" target="_blank">http://www.lexus.com.cn/models/rx/</a></br>
-				</p>
+				<a href="http://www.lexus.com.cn/models/rx/" target="_blank">
+					<div  class="award_setting"></div>
+			
+					<div class="car"></div>
+					<p class="lexus_doc">
+						中大型豪华SUV RX2000</br>
+						价格：41.8万-61.8万</br>
+						详情请参见官网。http://www.lexus.com.cn/models/rx/</br>
+					</p>
+
+				</a>
 				<div class="fade_assit as1">
 					<div class="award1"></div>
 				</div>
@@ -259,8 +269,27 @@
 		<div class="footer_end"></div>
 		
 	<script type="text/javascript" src="http://news.sohu.com/upload/yursile/svgtest/js/vivus.min.js"></script>
-	<script type="text/javascript">
+
+<!-- 	<div id="container" class="container">
+		<ul id="scene" class="scene">
+			<li class="layer" data-depth="1.00"><img src="images/layer1.png"></li>
+			<li class="layer" data-depth="0.80"><img src="images/layer2.png"></li>
+			<li class="layer" data-depth="0.60"><img src="images/layer3.png"></li>
+			<li class="layer" data-depth="0.40"><img src="images/layer4.png"></li>
+			<li class="layer" data-depth="0.20"><img src="images/layer5.png"></li>
+			<li class="layer" data-depth="0.00"><img src="images/layer6.png"></li>
+		</ul>
+	</div> -->
+
+	<!-- Scripts -->
+	<script src="http://news.sohu.com/upload/ky/parallax.min.js"></script>
+	<script>
+
+	// Pretty simple huh?
+	var scene = document.getElementById('scene');
+	var parallax = new Parallax(scene);
 
 	</script>
+
 	</body>
 </html>

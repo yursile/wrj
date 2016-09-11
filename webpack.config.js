@@ -54,7 +54,7 @@ module.exports={
             // }
         ]
     },
-    postcss: [autoprefixer],
+    postcss: [autoprefixer({ browsers: ['> 1%', 'IE 9']})],
     plugins:[
 
         // new  webpack.optimize.CommonsChunkPlugin('common.js', ['index', 'response']),
